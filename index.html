@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="veiwport" content="width=device-width, initial-scale=1">
+	<title>nativeJS_</title>
+
+	<link rel="stylesheet" href="../fonts/fa/css/font-awesome.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="player">
+		<div class="player__box">
+			<video src="video/AlleFarben-SheMovesfeat.GrahamCandy(OfficialVideo).mp4" class="player__video"></video>
+			<div class="player__controls">
+				<div class="player__progress">
+					<div class="player__progress--filled"></div>
+				</div>
+
+				<button class="player__btn toogle"><i class="fa fa-play" aria-hidden="true"></i></button>
+
+				<input type="range" min="0" max="1" step="0.1" value="0.5" name="volume" class="player__range player__vol">
+				<input type="range" min="0.5" max="2" step="0.25" value="1" name="playbackRate" class="player__range player__speed">
+
+				<button class="player__btn minus" data-skip="-10"><i class="fa fa-backward" aria-hidden="true"></i></button>
+				<button class="player__btn plus" data-skip="10"><i class="fa fa-forward" aria-hidden="true"></i></button>
+			</div>
+		</div>
+		<ul class="player__playlist">
+			<li class="playlist__item" 
+				data-videoname="Stolen Dance (Album Version)"
+				data-videoauthor="Milky Chance"
+				data-videourl="video/MilkyChance-StolenDance(AlbumVersion).mp4">
+				<!-- <img src="img/poster1.jpg" alt="" class="playlist__poster"> -->
+				<div class="playlist__info">
+					<h2 class="playlist__name">Title 1</h2>
+					<h3 class="playlist__author">CoolAuthor</h3>
+				</div>
+			</li>
+			<li class="playlist__item" 
+				data-videoname="SheMoves"
+				data-videoauthor="Alle Farben feat GrahamCandy"
+				data-videourl="video/AlleFarben-SheMovesfeat.GrahamCandy(OfficialVideo).mp4">
+				<!-- <img src="img/poster1.jpg" alt="" class="playlist__poster"> -->
+				<div class="playlist__info">
+					<h2 class="playlist__name">Title 1</h2>
+					<h3 class="playlist__author">CoolAuthor</h3>
+				</div>
+			</li>
+			<li class="playlist__item" 
+				data-videoname="TeachMe"
+				data-videoauthor="Bakermat"
+				data-videourl="video/Bakermat-TeachMe(OfficialVideoHD).mp4">
+				<!-- <img src="img/poster1.jpg" alt="" class="playlist__poster"> -->
+				<div class="playlist__info">
+					<h2 class="playlist__name">Title 1</h2>
+					<h3 class="playlist__author">CoolAuthor</h3>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
