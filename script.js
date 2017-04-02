@@ -6,18 +6,21 @@
 // FOR VideoPlayer
 const player = document.querySelector('.player');
 const video = player.querySelector('.player__video');
+
 const progressBox = player.querySelector('.player__progress');
 const progressBar = player.querySelector('.player__progress--filled');
+
 const volume = player.querySelector('.player__vol');
 const speed = player.querySelector('.player__speed');
+
 const minusBtn = player.querySelector('.minus');
 const plusBtn = player.querySelector('.plus');
+
 const playBtn = player.querySelector('.toogle');
-const playBtnIcon = player.querySelector('.toogle>.fa');
+const playBtnIcon = player.querySelector('.toogle>.player__icon');
+
 let mouseDown = false;
 
-// FOR Playlist
-const playlist = document.querySelectorAll('.playlist__item');
 
 
 // Decorators
@@ -39,13 +42,12 @@ function debounce(func, wait, immediate) {
 // Build functions
 // ========================
 function togglePlay(e) {
-	e.preventDefault;
 	video.paused ? video.play() : video.pause();
 }
 function updateBtn() {
-	const iconClasses = playBtnIcon.classList;
-	iconClasses.toggle('fa-pause');
-	iconClasses.toggle('fa-play');
+	const iconClasses = playBtn.classList;
+	iconClasses.toggle('pause');
+	iconClasses.toggle('play');
 }
 function progressSkip(e) {
 	const skipTime = parseFloat(this.dataset.skip);
@@ -64,15 +66,7 @@ function progressGoTo(e) {
 const progressScrub = debounce(function progressScrub(e) {
 	if (!mouseDown) {return}
 	video.currentTime = (e.layerX / this.offsetWidth)*video.duration;
-}, 50, true);
-
-
-
-
-
-
-
-
+}, 10, true);
 
 
 // Event Listeners
@@ -95,6 +89,49 @@ minusBtn.addEventListener('click', progressSkip);
 // Ranges
 volume.addEventListener('change', rangesHandler);
 speed.addEventListener('change', rangesHandler);
+
+
+
+
+
+
+
+// PlayList
+// ========================
+
+const playlist = document.querySelector('.player__playlist');
+const playlistItem = document.querySelectorAll('.playlist__item');
+
+
+playlistItem.forEach( (item) => {
+	const itemName = item.querySelector('.playlist__name');
+	const itemAuthot = item.querySelector('.playlist__author');
+	itemName.innerHTML = item.dataset.videoname;
+	itemAuthot.innerHTML = item.dataset.videoauthor;
+} )
+
+function videoChangeHandler(e) {
+	video.paused ? '' : updateBtn();
+	video.setAttribute('src', this.dataset.videourl);
+
+	video.currentTime = 0;
+	progressBar.style.flexBasis = '0%';
+
+	playlistItem.forEach( (item) => {item.classList.remove('active')} );
+	this.classList.add('active');
+	
+}
+
+
+
+
+
+
+
+playlistItem.forEach( (item) => {
+	item.addEventListener('click', videoChangeHandler)
+} )
+
 
 
 
